@@ -1,0 +1,5 @@
+venv
+.DB_Store
+
+#Everything in that ends with .pkl
+*.pkl
