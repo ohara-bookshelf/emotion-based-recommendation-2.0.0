@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from app.model.model import get_reviews_df, get_polarity_scores, get_high_rated_reviews, __version__ as model_version
 
+from app.model.model import get_reviews_df, get_top_reviews, get_polarity_scores,  __version__ as model_version
+#from model.model import get_reviews_df, get_top_reviews, get_polarity_scores,  __version__ as model_version
 #import uvicorn
 
 app = FastAPI(
@@ -57,7 +58,7 @@ def book_reviews(book_id: BookIDInput):
 
 @app.post("/book-high-rated-reviews", response_model=BookHighRatedReviewsOutput)
 def book_high_rated_reviews(book_id: BookIDInput):
-    high_rated_reviews_df = get_high_rated_reviews(book_id.text)
+    high_rated_reviews_df = get_top_reviews(book_id.text)
     
     if high_rated_reviews_df is None:
         return {"top_reviews": "There are no reviews for this book."}
