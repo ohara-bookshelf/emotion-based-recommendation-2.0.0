@@ -4,6 +4,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
+
+# import nltk
+
+# # Download the vader_lexicon resource if not already downloaded
+# nltk.download('vader_lexicon')
+
+
 import re
 import pandas as pd
 
@@ -14,18 +21,23 @@ def scrape_reviews(url):
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
-    # Use ChromeDriverManager to automatically download the appropriate ChromeDriver
-    driver = webdriver.Chrome(ChromeDriverManager(version="113.0.5672.63").install(), options=options)
+    # Use ChromeDriverManager to automatically download the appropriate ChromeDriver #version="113.0.5672.63" version="114.0.5735.90"
+    #Get the the current chrome version
+    # chrome_version = !google-chrome --version
+    # chrome_version = chrome_version[0].split(' ')[2].split('.')[0]
+    # print(chrome_version)
+    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 
     # Open the URL
     driver.get(url)
 
     # If the page still contains Loading... wait for the reviews to load
     waiting_time = 10
-    while driver.page_source.find('Loading...') != -1:
+    source = driver.page_source
+    while source.find('Loading...') != -1:
         WebDriverWait(driver, waiting_time).until_not(EC.presence_of_element_located((By.CLASS_NAME, 'Loading')))
         source = driver.page_source
-        waiting_time += 5
+        waiting_time += 10
 
 
     reviews_element = driver.find_element(By.CLASS_NAME, 'ReviewsList')

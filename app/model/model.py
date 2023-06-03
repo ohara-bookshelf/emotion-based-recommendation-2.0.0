@@ -6,9 +6,9 @@ nltk.download('vader_lexicon')
 
 
 ### Import the scraper functions
-# from scraper.reviews_scraper import scrape_reviews
+from scraper.reviews_scraper import scrape_reviews
 
-from app.scraper.reviews_scraper import scrape_reviews
+# from app.scraper.reviews_scraper import scrape_reviews
 
 #from app.scraper.reviews_scraper import scrape_reviews
 from nltk.sentiment import SentimentIntensityAnalyzer

@@ -2,9 +2,14 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 
 
-from app.model.model import get_reviews_df, get_top_reviews, get_polarity_scores,  __version__ as model_version
-#from model.model import get_reviews_df, get_top_reviews, get_polarity_scores,  __version__ as model_version
-#import uvicorn
+#from app.model.model import get_reviews_df, get_top_reviews, get_polarity_scores,  __version__ as model_version
+from model.model import get_reviews_df, get_top_reviews, get_polarity_scores,  __version__ as model_version
+import uvicorn
+
+
+# import nltk
+# nltk.download('vader_lexicon')
+
 
 app = FastAPI(
     title="Ohara-Bookshelf BOOK REVIEWS SCRAPER API",
@@ -81,5 +86,5 @@ def book_high_rated_reviews(book_id: BookIDInput):
     return {"top_reviews": high_rated_reviews_df}
 
 
-# if __name__ == '__main__':
-#     uvicorn.run(app, host='127.0.0.1', port=4000)
+if __name__ == '__main__':
+    uvicorn.run(app, host='127.0.0.1', port=4000)
