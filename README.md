@@ -18,4 +18,18 @@
 ### 3. Click on the "Try it out" button, then on the json file enter the book name on the string text and number of books you want to get recommended on the count field. Finally click "execute" button. The numbers shown are the ISBN of the recommended books.
 
 
+
+# Note: I had an issue wit running the project with docker, so I had to run it on my local machine. I will try to fix it as soon as possible.
+
+## Here is the way to run the project on your local machine using uvicorn:
+### 1. Clone the source code
+### 2. Navigate the interface forder.
+``` cd app ```
+### 3. Run the following command:
+``` uvicorn main:app```
+### 4. Open your browser and navigate to:
+``` http://127.0.0.1:8000/docs ```
+
+#### And you are good to go.
+
 #### Engooooy it!!!
